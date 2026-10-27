@@ -14,12 +14,16 @@ import {
   Mic,
 } from 'lucide-react-native';
 
+import CardContratacao, {
+  type Contratacao,
+} from '../../../components/contratacoes/CardContratacao';
+
 // Importações dos Componentes e do Contexto
 import Sidebar from '../../../components/Sidebar';
 import Header from '../../../components/Header';
 import { useTheme } from '../../../components/context/ThemeContext';
 
-const CONTRATACOES_LIST = [
+const CONTRATACOES_LIST: Contratacao[] = [
   {
     id: '1',
     name: 'Lucas Andrade',
@@ -114,35 +118,14 @@ export default function ContratacoesScreen() {
               </View>
 
               <View style={styles.cardsContainer}>
-                {CONTRATACOES_LIST.map((item) => {
-                  const IconComponent = item.icon;
-                  const avatarBg = isLightMode ? item.lightBgColor : item.darkBgColor;
-
-                  return (
-                    <View key={item.id} style={styles.card}>
-                      <View style={styles.cardLeftGroup}>
-                        <View style={[styles.avatarContainer, { backgroundColor: avatarBg }]}>
-                          <IconComponent size={24} color={item.iconColor} />
-                        </View>
-                        <View style={styles.artistDetails}>
-                          <View style={styles.nameCategoryRow}>
-                            <Text style={styles.artistName}>{item.name}</Text>
-                            <Text style={styles.artistCategory}>{item.category}</Text>
-                          </View>
-                          <Text style={styles.infoText}>{item.date}</Text>
-                          <Text style={styles.infoText}>{item.location}</Text>
-                        </View>
-                      </View>
-
-                      <View style={styles.cardRightGroup}>
-                        <View style={[styles.statusBadge, getStatusStyles(item.status)]}>
-                          <Text style={styles.statusText}>{item.status}</Text>
-                        </View>
-                      </View>
-                    </View>
-                  );
-                })}
+                {CONTRATACOES_LIST.map((item) => (
+                  <CardContratacao
+                    key={item.id}
+                    item={item}
+                  />
+                ))}
               </View>
+                      
             </View>
           </ScrollView>
 
