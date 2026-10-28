@@ -4,12 +4,9 @@ import {
   StyleSheet,
   Text,
   View,
+  Pressable,
 } from 'react-native';
-import {
-  Music,
-  Headphones,
-  Mic,
-} from 'lucide-react-native';
+import { Music, ChevronRight } from 'lucide-react-native';
 import { useTheme } from '../context/ThemeContext';
 
 type IconType = typeof Music;
@@ -29,6 +26,7 @@ export type Contratacao = {
 
 type Props = {
   item: Contratacao;
+  onPress: () => void;
 };
 
 function getStatusColor(status: string) {
@@ -44,7 +42,7 @@ function getStatusColor(status: string) {
   }
 }
 
-export default function CardContratacao({ item }: Props) {
+export default function CardContratacao({ item, onPress }: Props) {
   const { theme, isLightMode } = useTheme();
   const IconComponent = item.icon;
 
@@ -72,7 +70,8 @@ export default function CardContratacao({ item }: Props) {
     cardLeftGroup: {
       flexDirection: 'row',
       alignItems: 'center',
-      flexShrink: 1,
+      flex: 1,
+      minWidth: 0,
     },
     avatarContainer: {
       width: 52,
@@ -84,7 +83,8 @@ export default function CardContratacao({ item }: Props) {
     },
     artistDetails: {
       justifyContent: 'center',
-      flexShrink: 1,
+      flex: 1,
+      minWidth: 0,
     },
     nameCategoryRow: {
       flexDirection: 'row',
@@ -112,10 +112,11 @@ export default function CardContratacao({ item }: Props) {
       alignItems: 'flex-end',
       justifyContent: 'center',
       marginLeft: 12,
+      gap: 10,
     },
     statusBadge: {
       paddingVertical: 6,
-      paddingHorizontal: 16,
+      paddingHorizontal: 12,
       borderRadius: 20,
       backgroundColor: getStatusColor(item.status),
     },
@@ -127,7 +128,15 @@ export default function CardContratacao({ item }: Props) {
   });
 
   return (
-    <View style={styles.card}>
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={`Ver detalhes da contratação de ${item.name}`}
+      style={({ pressed }) => [
+        styles.card,
+        pressed && { opacity: 0.75 },
+      ]}
+    >
       <View style={styles.cardLeftGroup}>
         <View
           style={[
@@ -165,7 +174,12 @@ export default function CardContratacao({ item }: Props) {
             {item.status}
           </Text>
         </View>
+
+        <ChevronRight
+          size={20}
+          color={theme.textSecondary}
+        />
       </View>
-    </View>
+    </Pressable>
   );
 }
