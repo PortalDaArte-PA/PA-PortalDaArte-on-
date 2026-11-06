@@ -146,28 +146,19 @@ export default function DetalhesContratacaoScreen() {
             <View style={styles.contentWrapper}>
 
               {/* Navegação superior */}
-              <View style={styles.topNavigation}>
-                <Pressable
-                  onPress={voltar}
-                  style={styles.backButton}
-                >
-                  <ArrowLeft
-                    size={20}
-                    color={theme.textSecondary}
-                  />
+              
+            <View style={styles.topNavigation}>
+              <View />
 
-                  <Text style={styles.backButtonText}>
-                    Voltar para a lista
-                  </Text>
-                </Pressable>
+              <Pressable
+                onPress={voltar}
+                style={styles.closeButton}
+                accessibilityLabel="Fechar detalhes"
+              >
+                <X size={22} color={theme.textSecondary} />
+              </Pressable>
+            </View>
 
-                <Pressable
-                  onPress={voltar}
-                  style={styles.closeButton}
-                >
-                  <X size={22} color={theme.textSecondary} />
-                </Pressable>
-              </View>
 
               {/* Cabeçalho do contratado */}
               <View style={styles.profileHeader}>

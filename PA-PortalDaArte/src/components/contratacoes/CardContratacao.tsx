@@ -109,10 +109,11 @@ export default function CardContratacao({ item, onPress }: Props) {
       marginTop: 2,
     },
     cardRightGroup: {
-      alignItems: 'flex-end',
+      flexDirection: 'row',
+      alignItems: 'center',
       justifyContent: 'center',
-      marginLeft: 12,
-      gap: 10,
+      marginLeft: 16,
+      gap: 14,
     },
     statusBadge: {
       paddingVertical: 6,
