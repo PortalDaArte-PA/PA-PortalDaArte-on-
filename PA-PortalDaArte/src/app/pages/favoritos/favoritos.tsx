@@ -51,7 +51,6 @@ function FavoriteAvatar({ uri, id, background, icon: Icon, color, styles }: any)
     </View>
   );
 }
-
 const formatPrice = (value: number) => `R$ ${Number(value).toLocaleString("pt-BR")}`;
 
 export default function IndexScreen() {
@@ -186,9 +185,20 @@ export default function IndexScreen() {
                             )}
                           </Text>
                           <View style={styles.actionButtonsRow}>
-                            <TouchableOpacity style={styles.btnContract} activeOpacity={0.8}>
-                              <Text style={styles.btnContractText}>Contratar</Text>
-                            </TouchableOpacity>
+                           <TouchableOpacity
+                           style={styles.btnContract}
+  activeOpacity={0.8}
+  onPress={() =>
+    router.push({
+      pathname: "pages/contratacoes/Contratar",
+      params: { id: String(item.id), name: item.name },
+    } as any)
+  }
+  accessibilityLabel={`Contratar ${item.name}`}
+  testID={`contract-${item.id}`}
+>
+  <Text style={styles.btnContractText}>Contratar</Text>
+</TouchableOpacity>
 
                             <TouchableOpacity
                               style={styles.btnFavoriteActive}
