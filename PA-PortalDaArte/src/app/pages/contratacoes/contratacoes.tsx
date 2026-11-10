@@ -47,11 +47,11 @@ import { useTheme } from '../../../components/context/ThemeContext';
 const getStatusStyles = (status: string) => {
   switch (status) {
     case 'Pendente':
-      return { backgroundColor: '#F2994A' }; // Laranja
+      return { backgroundColor: '#FFB957' }; // Laranja
     case 'Confirmado':
-      return { backgroundColor: '#56CCF2' }; // Azul claro
+      return { backgroundColor: '#56BBDA' }; // Azul claro
     case 'Concluido':
-      return { backgroundColor: '#27AE60' }; // Verde
+      return { backgroundColor: '#80EF80' }; // Verde
     default:
       return { backgroundColor: '#BDBDBD' }; // Cinza padrão
   }
